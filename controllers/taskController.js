@@ -7,7 +7,7 @@ exports.getAllTasksBySpace = (req, res, next) => {
   }
   const id_space = req.body.id_espace;
   dbConnection.query(
-    'SELECT * FROM tache WHERE id_espace = ?',
+    'SELECT * FROM TACHE WHERE id_espace = ?',
     id_space,
     function (err, data, fields) {
       if (err) return next(err);
