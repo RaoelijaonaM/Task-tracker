@@ -1,8 +1,8 @@
 const config = {
   db: {
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: 'db4free.net',
+    user: 'lartic',
+    password: 'lartic-app',
     database: 'lartic',
   },
 };
