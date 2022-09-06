@@ -42,24 +42,44 @@ exports.createTasks = (req, res, next) => {
   );
 };
 
+// exports.updateTask = (req, res, next) => {
+//   if (!req.body) {
+//     return next(new AppError('No data found', 404));
+//   }
+//   const id_tache = req.params.tache;
+//   const { id_tacheD, id_utilisateur, id_espace, date_fin, date_debut, status } =
+//     req.body;
+//   dbConnection.query(
+//     'UPDATE TACHE SET id_tacheD=?, id_utilisateur=?, id_espace=?, date_fin=?, date_debut=?, status=? WHERE id_tache=?',
+//     [
+//       id_tacheD,
+//       id_utilisateur,
+//       id_espace,
+//       date_fin,
+//       date_debut,
+//       status,
+//       id_tache,
+//     ],
+//     function (err, data, fields) {
+//       console.log(this.sql);
+//       if (err) return next(err);
+//       res.status(200).json({
+//         status: 'success',
+//         data: 'task modified',
+//       });
+//     }
+//   );
+// };
+
 exports.updateTask = (req, res, next) => {
   if (!req.body) {
     return next(new AppError('No data found', 404));
   }
   const id_tache = req.params.tache;
-  const { id_tacheD, id_utilisateur, id_espace, date_fin, date_debut, status } =
-    req.body;
+  const status = req.body;
   dbConnection.query(
-    'UPDATE TACHE SET id_tacheD=?, id_utilisateur=?, id_espace=?, date_fin=?, date_debut=?, status=? WHERE id_tache=?',
-    [
-      id_tacheD,
-      id_utilisateur,
-      id_espace,
-      date_fin,
-      date_debut,
-      status,
-      id_tache,
-    ],
+    'UPDATE TACHE SET status=? WHERE id_tache=?',
+    [status, id_tache],
     function (err, data, fields) {
       console.log(this.sql);
       if (err) return next(err);
