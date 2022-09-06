@@ -7,7 +7,7 @@ exports.getAllTasksBySpace = (req, res, next) => {
   }
   const id_space = req.params.espace;
   dbConnection.query(
-    "SELECT ID_TACHE,detail.libelle as ID_TACHED,CONCAT(u.NOM,' ',u.PRENOM) as ID_UTILISATEUR,ID_ESPACE,DATE_DEBUT,DATE_FIN FROM TACHEDEFAUT detail JOIN TACHE ON detail.ID_TACHED=TACHE.ID_TACHED JOIN UTILISATEUR u ON u.ID_UTILISATEUR=TACHE.ID_UTILISATEUR WHERE id_espace = ?",
+    "SELECT ID_TACHE,detail.libelle as ID_TACHED,CONCAT(u.NOM,' ',u.PRENOM) as ID_UTILISATEUR,ID_ESPACE,DATE_DEBUT,DATE_FIN,STATUS FROM TACHEDEFAUT detail JOIN TACHE ON detail.ID_TACHED=TACHE.ID_TACHED JOIN UTILISATEUR u ON u.ID_UTILISATEUR=TACHE.ID_UTILISATEUR WHERE id_espace = ?",
     id_space,
     function (err, data, fields) {
       if (err) return next(err);
