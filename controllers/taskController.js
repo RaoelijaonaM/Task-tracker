@@ -2,12 +2,12 @@ const dbConnection = require('../services/db');
 const AppError = require('../services/appError');
 
 exports.getAllTasksBySpace = (req, res, next) => {
-  if (typeof req.body.id_espace == 'undefined') {
+  if (typeof req.params.espace == 'undefined') {
     return next(new AppError('espace non spécifiée', 404));
   }
-  const id_space = req.body.id_espace;
+  const id_space = req.params.espace;
   dbConnection.query(
-    'SELECT ID_TACHE,detail.libelle as ID_TACHED,CONCAT(u.NOM,\' \',u.PRENOM) as ID_UTILISATEUR,ID_ESPACE,DATE_DEBUT,DATE_FIN FROM TACHEDEFAUT detail JOIN TACHE ON detail.ID_TACHED=TACHE.ID_TACHED JOIN UTILISATEUR u ON u.ID_UTILISATEUR=TACHE.ID_UTILISATEUR WHERE id_espace = ?',
+    "SELECT ID_TACHE,detail.libelle as ID_TACHED,CONCAT(u.NOM,' ',u.PRENOM) as ID_UTILISATEUR,ID_ESPACE,DATE_DEBUT,DATE_FIN FROM TACHEDEFAUT detail JOIN TACHE ON detail.ID_TACHED=TACHE.ID_TACHED JOIN UTILISATEUR u ON u.ID_UTILISATEUR=TACHE.ID_UTILISATEUR WHERE id_espace = ?",
     id_space,
     function (err, data, fields) {
       if (err) return next(err);
