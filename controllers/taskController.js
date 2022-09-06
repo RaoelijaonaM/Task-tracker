@@ -72,11 +72,12 @@ exports.createTasks = (req, res, next) => {
 // };
 
 exports.updateTask = (req, res, next) => {
+  console.log('task update loading....');
   if (!req.body) {
     return next(new AppError('No data found', 404));
   }
   const id_tache = req.params.tache;
-  const status = req.body;
+  const status = req.body.STATUS;
   dbConnection.query(
     'UPDATE TACHE SET status=? WHERE id_tache=?',
     [status, id_tache],
