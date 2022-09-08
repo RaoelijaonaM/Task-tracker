@@ -20,7 +20,25 @@ exports.getAllTasksBySpace = (req, res, next) => {
     }
   );
 };
-
+exports.getTaskById = (req, res, next) => {
+  if (typeof req.params.tache == 'undefined') {
+    return next(new AppError('tache non spécifiée', 404));
+  }
+  const id_tache = req.params.espace;
+  dbConnection.query(
+    "SELECT ID_TACHE,detail.libelle as ID_TACHED,CONCAT(u.NOM,' ',u.PRENOM) as ID_UTILISATEUR,ID_ESPACE,DATE_DEBUT,DATE_FIN,STATUS FROM TACHEDEFAUT detail JOIN TACHE ON detail.ID_TACHED=TACHE.ID_TACHED JOIN UTILISATEUR u ON u.ID_UTILISATEUR=TACHE.ID_UTILISATEUR WHERE ID_TACHE = ?",
+    id_tache,
+    function (err, data, fields) {
+      if (err) return next(err);
+      if (!data.length) return next(new AppError('Espace non existante', 404));
+      res.status(200).json({
+        status: 'success',
+        length: data?.length,
+        data: data,
+      });
+    }
+  );
+};
 exports.createTasks = (req, res, next) => {
   if (!req.body) {
     return next(new AppError('No data found', 404));
