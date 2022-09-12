@@ -6,6 +6,8 @@ const taskD = require('./routes/taskD');
 const userRoute = require('./routes/user');
 const spaceRoute = require('./routes/espace');
 const discussionRoute = require('./routes/discussion');
+const theseRoute = require('./routes/these');
+
 
 const cors = require('cors');
 const errorHandler = require('./services/errorHandler');
@@ -26,6 +28,7 @@ app.use('/api', taskD);
 app.use('/api', userRoute);
 app.use('/api', spaceRoute);
 app.use('/api', discussionRoute);
+app.use('/api', theseRoute);
 
 
 app.use(errorHandler);
