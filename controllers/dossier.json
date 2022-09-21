@@ -1,0 +1,27 @@
+[
+  {
+    "dossier": "Fiche de suivi",
+    "url": "",
+    "etat": 1
+  },
+  {
+    "dossier": "Exemplaire complet de la thèse",
+    "url": "",
+    "etat": 1
+  },
+  {
+    "dossier": "Rapport de stage",
+    "url": "",
+    "etat": 1
+  },
+  {
+    "dossier": "Fiche de thèse",
+    "url": "",
+    "etat": 1
+  },
+  {
+    "dossier": "Attestation du Directeur",
+    "url": "",
+    "etat": 1
+  }
+]

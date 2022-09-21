@@ -21,3 +21,14 @@ exports.getAllAlarms = (req, res, next) => {
     });
   });
 };
+exports.getAlarmDetailByTache = (req,res,next) =>{
+  const id_tache = req.params.tache;
+  dbConnection.query('SELECT * FROM detailAlarme WHERE ID_TACHE=?', id_tache, function (err, data, fields) {
+    if (err) return next(err);
+    res.status(200).json({
+      status: 'success',
+      length: data?.length,
+      data: data,
+    });
+  });
+}

@@ -28,3 +28,36 @@ exports.login = (req, res, next) => {
     }
   );
 };
+
+exports.saveTokenDevice = (req, res, next) => {
+  if (!req.body) {
+    return next(new AppError('token inexistant', 400));
+  }
+  const { iduser, token } = req.body;
+  console.log(req.body);
+  dbConnection.query(
+    'UPDATE UTILISATEUR SET TOKENDEVICE= ? WHERE ID_UTILISATEUR = ?',
+    [token, iduser],
+    function (err, data, fields) {
+      console.log(this.sql);
+      if (err) return next(err);
+      res.status(200).json({
+        status: 'success',
+        length: data?.length,
+        data: { message: 'user updated' },
+      });
+    }
+  );
+};
+
+exports.getUsers = (req, res, next) => {
+  dbConnection.query('SELECT * FROM UTILISATEUR', function (err, data, fields) {
+    console.log(this.sql);
+    if (err) return next(err);
+    res.status(200).json({
+      status: 'success',
+      length: data?.length,
+      data: data,
+    });
+  });
+};
