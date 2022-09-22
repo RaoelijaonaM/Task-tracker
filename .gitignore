@@ -1,3 +1,1 @@
 /node_modules
-
-mysqldump --add-drop-table -u root lartic > lartic.sql

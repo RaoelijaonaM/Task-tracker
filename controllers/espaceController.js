@@ -79,3 +79,47 @@ exports.getTheseWithoutSpace = (req, res, next) => {
     }
   );
 };
+
+/*********************CREATION ESPACE***************************/
+//function create espace
+exports.creerEspace = (req,res,next) =>{
+    //insert these
+    //insert membre
+    //insert tache
+}
+//insert membre
+function insertMembre(membres) {
+  membres.forEach(element => {
+    dbConnection.query(
+      "INSERT INTO MEMBRE (ID_ESPACE,ID_UTILISATEUR,ROLE) SELECT CONCAT('ES',MAX(CAST(SUBSTRING(ID_ESPACE FROM 3) AS UNSIGNED))),?,? FROM ESPACE",
+      [element.ID_UTILISAEUR,element.ROLE],
+      function (err, data, fields) {
+        console.log(this.sql);
+        if (err) return next(err);
+        res.status(200).json({
+          status: 'success',
+          length: data?.length,
+          data: 'user inserted',
+        });
+      }
+    )
+  });
+}
+//insert tache
+function insertTache(membres) {
+  membres.forEach(element => {
+    dbConnection.query(
+      "INSERT INTO MEMBRE (ID_ESPACE,ID_UTILISATEUR,ROLE) SELECT CONCAT('ES',MAX(CAST(SUBSTRING(ID_ESPACE FROM 3) AS UNSIGNED))),?,? FROM ESPACE",
+      [element.ID_UTILISAEUR,element.ROLE],
+      function (err, data, fields) {
+        console.log(this.sql);
+        if (err) return next(err);
+        res.status(200).json({
+          status: 'success',
+          length: data?.length,
+          data: 'user inserted',
+        });
+      }
+    )
+  });
+}
