@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 exports.login = (req, res, next) => {
+  console.log("login body: ",req.body);
+
   if (!req.body) {
     return next(new AppError('login et mot de passe obligatoire', 400));
   }
@@ -12,6 +14,7 @@ exports.login = (req, res, next) => {
     'SELECT * FROM UTILISATEUR WHERE LOGIN = ? AND MDP = ?',
     [login, password],
     function (err, data, fields) {
+      console.log("sql login: ",this.sql);
       if (err) return next(err);
       if (!data.length)
         return next(
