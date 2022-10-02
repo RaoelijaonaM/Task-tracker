@@ -4,7 +4,7 @@ var FCM = require('fcm-node');
 exports.getTasksOfLastSpace = (req, res, next) => {
   let idespace=req.params.espace;
   dbConnection.query(
-    "SELECT ID_TACHE,ID_ESPACE,ID_ALARME,TacheDefaut.LIBELLE AS ID_TACHED,DATE_DEBUT,DATE_FIN,STATUS,DESCRIPTION FROM Tache JOIN TacheDefaut ON Tache.ID_TACHED=TacheDefaut.ID_TACHED WHERE id_espace = ? AND STATUS=0",id  espace,
+    "SELECT ID_TACHE,ID_ESPACE,ID_ALARME,TacheDefaut.LIBELLE AS ID_TACHED,DATE_DEBUT,DATE_FIN,STATUS,DESCRIPTION FROM Tache JOIN TacheDefaut ON Tache.ID_TACHED=TacheDefaut.ID_TACHED WHERE id_espace = ? AND STATUS=0",idespace,
     function (err, data, fields) {
       console.log(this.sql);
       if (err) return next(err);
