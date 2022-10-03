@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/espaceController');
+const notif = require('../controllers/notificationController');
 const router = express.Router();
 router.route('/space/:espace').get(controller.getSpaceDetails);
 router.route('/members/:espace').get(controller.getSpaceMembers);
@@ -8,5 +9,5 @@ router.route('/espaces').get(controller.getAllSpaces);
 router.route('/theseLibre').get(controller.getTheseWithoutSpace);
 router.route('/creer').post(controller.creerEspace);
 router.route('/ajoutResponsable').post(controller.insertExecuteur);
-
+router.route('/sendmail').post(notif.sendMailNotif);
 module.exports = router;

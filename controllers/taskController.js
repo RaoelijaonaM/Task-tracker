@@ -98,7 +98,7 @@ exports.updateTask = (req, res, next) => {
 
   dbConnection.query(
     'UPDATE TACHE SET DATE_FIN=?, DATE_DEBUT=?, DESCRIPTION=?, ID_ALARME=? WHERE id_tache=?',
-    [datefin, datedeb, DESCRIPTION, ID_REPETITION, ID_ALARME, id_tache],
+    [datefin, datedeb, DESCRIPTION, ID_ALARME, id_tache],
     function (err, data, fields) {
       console.log(this.sql);
       if (err) return next(err);
